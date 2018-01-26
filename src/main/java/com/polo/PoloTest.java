@@ -21,42 +21,6 @@ public class PoloTest {
 
     public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode actualObj = mapper.readTree(" {\n" +
-                "\t\"success\" : true,\n" +
-                "\t\"message\" : \"\",\n" +
-                "\t\"rootMap\" : [{\n" +
-                "\t\t\t\"MarketName\" : \"BTC-888\",\n" +
-                "\t\t\t\"High\" : 0.00000919,\n" +
-                "\t\t\t\"Low\" : 0.00000820,\n" +
-                "\t\t\t\"Volume\" : 74339.61396015,\n" +
-                "\t\t\t\"Last\" : 0.00000820,\n" +
-                "\t\t\t\"BaseVolume\" : 0.64966963,\n" +
-                "\t\t\t\"TimeStamp\" : \"2014-07-09T07:19:30.15\",\n" +
-                "\t\t\t\"Bid\" : 0.00000820,\n" +
-                "\t\t\t\"Ask\" : 0.00000831,\n" +
-                "\t\t\t\"OpenBuyOrders\" : 15,\n" +
-                "\t\t\t\"OpenSellOrders\" : 15,\n" +
-                "\t\t\t\"PrevDay\" : 0.00000821,\n" +
-                "\t\t\t\"Created\" : \"2014-03-20T06:00:00\",\n" +
-                "\t\t\t\"DisplayMarketName\" : null\n" +
-                "\t\t}, {\n" +
-                "\t\t\t\"MarketName\" : \"BTC-A3C\",\n" +
-                "\t\t\t\"High\" : 0.00000072,\n" +
-                "\t\t\t\"Low\" : 0.00000001,\n" +
-                "\t\t\t\"Volume\" : 166340678.42280999,\n" +
-                "\t\t\t\"Last\" : 0.00000005,\n" +
-                "\t\t\t\"BaseVolume\" : 17.59720424,\n" +
-                "\t\t\t\"TimeStamp\" : \"2014-07-09T07:21:40.51\",\n" +
-                "\t\t\t\"Bid\" : 0.00000004,\n" +
-                "\t\t\t\"Ask\" : 0.00000005,\n" +
-                "\t\t\t\"OpenBuyOrders\" : 18,\n" +
-                "\t\t\t\"OpenSellOrders\" : 18,\n" +
-                "\t\t\t\"PrevDay\" : 0.00000002,\n" +
-                "\t\t\t\"Created\" : \"2014-05-30T07:57:49.637\",\n" +
-                "\t\t\t\"DisplayMarketName\" : null\n" +
-                "\t\t}\n" +
-                "    ]\n" +
-                "}");
         final URL url = new URL("https://bittrex.com/api/v1.1/public/getmarketsummaries");
         final Map<String, Diff> diffMap = new HashMap<String, Diff>();
 
