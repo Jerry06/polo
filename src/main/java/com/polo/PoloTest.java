@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -63,8 +64,10 @@ public class PoloTest {
             @Override
             public void run() {
                 try {
+                    System.out.println("Start get data at :" + LocalDateTime.now());
                     HashMap<String, Object> rootMap = new ObjectMapper().readValue(url, HashMap.class);
                     if (rootMap.get("success").equals(true)) {
+
                         List<Map<String, Object>> results = (List) rootMap.get("result");
                         for (Map<String, Object> result : results) {
                             Diff diff = diffMap.get(result.get("MarketName").toString());
@@ -94,6 +97,9 @@ public class PoloTest {
 
                             if (diff.getNumberTimesOfIncreasePrice() >= 5 && diff.getNumberTimesOfIncreaseBigVolumne() >= 5) {
                                 System.out.println(result.get("MarketName") + "pump pump");
+                                diff.setNumberTimesOfIncreasePrice(0);
+                                diff.setNumberTimesOfIncreaseBigVolumne(0);
+                                diffMap.put(result.get("MarketName").toString(), diff);
                                 return;
                             } else {
                                 diffMap.put(result.get("MarketName").toString(), diff);
