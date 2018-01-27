@@ -53,13 +53,23 @@ public class PoloTest {
                             }
                             double lastVolumne = Double.parseDouble(result.get("BaseVolume").toString());
                             double newDiffVolumne = lastVolumne - diff.getLastVolumne();
-                            if (newDiffVolumne > diff.getDiffVolumne() * 2) {
+
+//                            if (diff.getDiffVolumne() > 0 && newDiffVolumne > diff.getDiffVolumne() * 4
+//                                    && diff.isIncreasePrice()) {
+//                                System.out.println(result.get("MarketName") + "pump pump 2.2");
+//                                diff.setNumberTimesOfIncreasePrice(0);
+//                                diff.setNumberTimesOfIncreaseBigVolumne(0);
+//                                diffMap.put(result.get("MarketName").toString(), diff);
+//                                return;
+//                            }
+
+                            if (newDiffVolumne > diff.getDiffVolumne() * 1.2) {
                                 diff.setNumberTimesOfIncreaseBigVolumne(diff.getNumberTimesOfIncreaseBigVolumne() + 1);
                             }
                             diff.setDiffVolumne(newDiffVolumne);
                             diff.setLastVolumne(lastVolumne);
 
-                            if (diff.getNumberTimesOfIncreasePrice() >= 5 && diff.getNumberTimesOfIncreaseBigVolumne() >= 5) {
+                            if (diff.getNumberTimesOfIncreasePrice() >= 4 && diff.getNumberTimesOfIncreaseBigVolumne() >= 2) {
                                 System.out.println(result.get("MarketName") + "pump pump");
                                 diff.setNumberTimesOfIncreasePrice(0);
                                 diff.setNumberTimesOfIncreaseBigVolumne(0);
