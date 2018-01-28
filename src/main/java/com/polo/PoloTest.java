@@ -65,11 +65,13 @@ public class PoloTest {
 
                             if (newDiffVolumne > diff.getDiffVolumne() * 1.2) {
                                 diff.setNumberTimesOfIncreaseBigVolumne(diff.getNumberTimesOfIncreaseBigVolumne() + 1);
+                            } else {
+                                diff.setNumberTimesOfIncreaseBigVolumne(0);
                             }
                             diff.setDiffVolumne(newDiffVolumne);
                             diff.setLastVolumne(lastVolumne);
 
-                            if (diff.getNumberTimesOfIncreasePrice() >= 4 && diff.getNumberTimesOfIncreaseBigVolumne() >= 3) {
+                            if (diff.getNumberTimesOfIncreasePrice() >= 4 && diff.getNumberTimesOfIncreaseBigVolumne() >= 2) {
                                 System.out.println(result.get("MarketName") + "pump pump");
                                 diff.setNumberTimesOfIncreasePrice(0);
                                 diff.setNumberTimesOfIncreaseBigVolumne(0);
@@ -86,7 +88,6 @@ public class PoloTest {
                     e.printStackTrace();
                 }
             }
-        }, 0, 60000);
-
+        }, (60000 - LocalDateTime.now().getSecond() * 1000 + 10000 ), 60000);
     }
 }
