@@ -49,7 +49,7 @@ public class PoloTest {
                             if (diff.isIncreasePrice()) {
                                 diff.setNumberTimesOfIncreasePrice(diff.getNumberTimesOfIncreasePrice() + 1);
                             } else {
-                                diff.setNumberTimesOfIncreasePrice(diff.getNumberTimesOfIncreasePrice() - 1);
+                                diff.setNumberTimesOfIncreasePrice(0);
                             }
                             double lastVolumne = Double.parseDouble(result.get("BaseVolume").toString());
                             double newDiffVolumne = lastVolumne - diff.getLastVolumne();
@@ -69,7 +69,7 @@ public class PoloTest {
                             diff.setDiffVolumne(newDiffVolumne);
                             diff.setLastVolumne(lastVolumne);
 
-                            if (diff.getNumberTimesOfIncreasePrice() >= 4 && diff.getNumberTimesOfIncreaseBigVolumne() >= 2) {
+                            if (diff.getNumberTimesOfIncreasePrice() >= 4 && diff.getNumberTimesOfIncreaseBigVolumne() >= 3) {
                                 System.out.println(result.get("MarketName") + "pump pump");
                                 diff.setNumberTimesOfIncreasePrice(0);
                                 diff.setNumberTimesOfIncreaseBigVolumne(0);
