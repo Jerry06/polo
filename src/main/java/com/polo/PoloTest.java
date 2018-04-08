@@ -35,7 +35,7 @@ public class PoloTest {
                         List<Map<String, Object>> results = (List) rootMap.get("result");
                         for (Map<String, Object> result : results) {
                             Diff diff = diffMap.get(result.get("MarketName").toString());
-                            if (diff == null) {
+                            if (diff == null) { 
                                 diff = new Diff();
                                 diff.setLastPrice(Double.parseDouble(result.get("Last").toString()));
                                 diff.setLastVolumne(Double.parseDouble(result.get("BaseVolume").toString()));
@@ -75,7 +75,7 @@ public class PoloTest {
                                 System.out.println(result.get("MarketName") + "pump pump");
                                 diff.setNumberTimesOfIncreasePrice(0);
                                 diff.setNumberTimesOfIncreaseBigVolumne(0);
-                                diffMap.put(result.get("MarketName").toString(), diff);
+                                diffMap.put(result.get("MarketName").toString(),                                                                                                diff);
                                 return;
                             } else {
                                 diffMap.put(result.get("MarketName").toString(), diff);
