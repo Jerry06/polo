@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,9 +13,14 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-public class PumpInfo {
+public class PumpInfo implements Comparable<PumpInfo> {
     private String symbol;
-    private List<UpPriceInfo> priceInfos;
+    private List<UpPriceInfo> priceInfos = new ArrayList<>();
+
+    @Override
+    public int compareTo(PumpInfo o) {
+        return this.priceInfos.size() - o.priceInfos.size();
+    }
 
     @Data
     @AllArgsConstructor

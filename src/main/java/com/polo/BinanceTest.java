@@ -9,10 +9,7 @@ import java.nio.file.Files;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static java.lang.Long.parseLong;
 
@@ -64,6 +61,7 @@ public class BinanceTest {
 //            System.out.println("Symbol : " + symbol);
 //            System.out.println("numberOfPumpVol : " + numberOfPumpVol);
         }
+        Collections.sort(pumpInfos);
         String asString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(pumpInfos);
         Files.write(new File("D:\\result.json").toPath(), asString.getBytes());
 
