@@ -1,6 +1,7 @@
 package com.polo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 import java.io.File;
@@ -34,7 +35,12 @@ public class BinanceTest {
             List<List<Object>> list = objectMapper.readValue(url, List.class);
             Queue<Double> queue = new LinkedList<>();
             for (int i = 0; i < 24; i++) {
-                queue.add(Double.parseDouble(list.get(i).get(9).toString()));
+                try {
+                    queue.add(Double.parseDouble(list.get(i).get(9).toString()));
+                } catch (Exception ex) {
+                    continue;
+                }
+
             }
             int numberOfPumpVol = 0;
             List<PumpInfo.UpPriceInfo> upPriceInfos = new ArrayList<>();
@@ -57,7 +63,12 @@ public class BinanceTest {
                 queue.poll();
                 queue.add(buybaseVol);
             }
-            pumpInfos.add(new PumpInfo(symbol, upPriceInfos));
+
+            String get24hTicker = "https://api.binance.com/api/v1/ticker/24hr?symbol=" + symbol;
+            DocumentContext context = JsonPath.parse(new URL(get24hTicker));
+            Double priceChangePercent = Double.parseDouble(context.read("priceChangePercent"));
+            Double quoteVolume = Double.parseDouble(context.read("quoteVolume").toString());
+            pumpInfos.add(new PumpInfo(symbol, priceChangePercent, quoteVolume, upPriceInfos));
 //            System.out.println("Symbol : " + symbol);
 //            System.out.println("numberOfPumpVol : " + numberOfPumpVol);
         }

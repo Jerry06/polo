@@ -15,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class PumpInfo implements Comparable<PumpInfo> {
     private String symbol;
+    private Double percentChange;
+    private Double quoteVolume;
     private List<UpPriceInfo> priceInfos = new ArrayList<>();
 
     @Override
